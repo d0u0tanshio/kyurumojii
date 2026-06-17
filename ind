@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { font-family: "Rounded Mplus 1c", sans-serif; background: linear-gradient(135deg, #fce4ec, #f3e5f5); padding: 20px; display: flex; justify-content: center; color: #5d4037; min-height: 100vh; margin: 0; }
+  .container { max-width: 500px; width: 100%; }
+  h1 { text-align: center; color: #ad1457; font-size: 1.8rem; margin-bottom: 20px; }
+  #searchInput { width: 100%; padding: 15px; border: none; border-radius: 30px; margin-bottom: 20px; box-sizing: border-box; background: rgba(255, 255, 255, 0.7); text-align: center; }
+  .emoji-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 10px; }
+  .emoji-card { background: #fff; border: 2px solid #f8bbd0; padding: 15px; text-align: center; border-radius: 20px; cursor: pointer; font-size: 1.2rem; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🎀 きゅるもじ 🎀</h1>
+  <input type="text" id="searchInput" placeholder="検索...">
+  <div id="emojiList" class="emoji-grid"></div>
+</div>
+
+<script>
+const emojiData = [
+  { text: "՞ ̥_ ̥ ՞", tags: ["泣く"] },
+  { text: "՞ ̳o̴̶̷̤ ̫ o̴̶̷̤ ̳՞", tags: ["かわいい"] },
+  { text: "⸝⸝- -⸝⸝", tags: ["アンニュイ"] },
+  { text: "ᐡ⸝⸝> ̫ <⸝⸝ᐡ", tags: ["喜び"] },
+  { text: "ᵕ ᵕ̩̩", tags: ["悲しい"] },
+  { text: "ᐡ ̳ᴗ ̫ ᴗ ̳ᐡ", tags: ["うさぎ"] },
+  { text: "◝(⑅•ᴗ•⑅)◜", tags: ["ご機嫌"] },
+  { text: "꒰ᐢ⸝⸝• ̫•⸝⸝ᐢ꒱", tags: ["量産型"] },
+  { text: "ᐡ- ̫-ᐡ", tags: ["呆れ"] },
+  { text: "( ߹꒳꒳߹ )", tags: ["切ない"] },
+  { text: "˘ ˘̥", tags: ["無"] },
+  { text: "ෆ ̖́-", tags: ["ハート"] },
+  { text: "ꔛ♡", tags: ["ハート"] },
+  { text: "⊹ ࣪ ˖", tags: ["キラキラ"] },
+  { text: "⺣̤̬", tags: ["ゆるい"] },
+  { text: "⋈", tags: ["リボン"] },
+  { text: "✧*。", tags: ["キラキラ"] },
+  { text: "𓂃𓈒𓏸", tags: ["ナチュラル"] },
+  { text: "𓍯", tags: ["ナチュラル"] },
+  { text: "·͜·", tags: ["スマイル"] }
+];
+
+const listEl = document.getElementById('emojiList');
+
+function render(data) {
+  listEl.innerHTML = '';
+  data.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'emoji-card';
+    div.innerText = item.text;
+    div.onclick = () => alert('コピーしたよ: ' + item.text);
+    listEl.appendChild(div);
+  });
+}
+
+render(emojiData);
+
+document.getElementById('searchInput').oninput = (e) => {
+  const filtered = emojiData.filter(i => i.tags.some(t => t.includes(e.target.value)));
+  render(filtered);
+};
+</script>
+
+</body>
+</html>
